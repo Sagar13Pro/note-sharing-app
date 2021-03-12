@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% block content %}
+<h1 class="text-center mb-3">My all Notes: [EMAIL]</h1>
+<br />
+<a href="{{url 'create_note'}}">Create New Notes</a>
+{% if note_list %} {% for note in note_list %}
+<div class="card mb-3">
+  <div class="card-body">
+    <p>Note Title: {{ note.title }}</p>
+    <p>Note Content: {{ note.secured_content }}</p>
+    <p>Note password: {{ note.password }}</p>
+    <p>Note created_at: {{ note.created_at }}</p>
+    <p>Note creator: {{ note.creator.email }}</p>
+    <p>Note expiry: {{ note.exipiry_time }}</p>
+  </div>
+</div>
+{% endfor %} {% else %}
+<p>No notes available available</p>
+{% endif %} {% endblock %}

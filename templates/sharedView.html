@@ -1,0 +1,98 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Note</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+	<link rel="icon" type="/image/png" href="{% static 'images/icons/favicon.ico' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"crossorigin="anonymous">
+	<!--===============================================================================================-->
+</head>
+
+<body>
+
+	<div class="limiter" style="background-color: #ebeeef">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-form-title">
+					<span class="login100-form-title-1">
+						Note
+					</span>
+				</div>
+				{% if messages %}
+				<div class="my-3 mx-2">
+					{% include 'messages.html' %}
+				</div>
+				{% endif %}
+
+				{% if err %}
+				<div class="alert alert-info my-3 mx-2" >
+					{{ err }}
+				</div>
+				{% endif %}
+				{% if passCheck %}
+					<div class="container mt-3">
+						<form action="{% url 'note_shared_view' id %}" method="POST">
+							{% csrf_token %}
+							  <div class="wrap-input100 validate-input m-b-18">
+								<input id="passwd" class="input100" type="password" name="password" placeholder="Enter password of Note" required>
+								<span class="eye-icon"><i id="eye-password" class="fas fa-eye-slash"></i></span>
+							</div>
+							<div class="container">
+								<div class="container-login100-form-btn justify-content-center">
+									<button type="submit" class="btn btn-outline-primary btn mb-2">
+										Submit
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				{% endif %}	
+				{% ifequal matched True %} 
+				<div class="container mt-3">
+					<div class="form-group" id="form-expiry">
+						<label for="title">Title</label>
+						<input  class="form-control" id="title"  value="{{sharedNote.title}}" readonly/>
+					  </div>
+					  <div class="form-group" id="form-expiry">
+						<label for="content">Content</label>
+						<textarea  class="form-control" id="content" rows="8" readonly />{{ secured_content}}</textarea>
+					  </div>
+					  <div class="form-group" id="form-expiry">
+						<label for="time">Expiry Time</label>
+						<input  class="form-control" id=time""   value="{{ sharedNote.expiry_time }}" readonly/>
+					  </div>
+				</div>
+				{% endifequal %}
+				{% ifequal matched False %} 
+				<div class="container mt-3">
+					<div class="form-group" id="form-expiry">
+						<label for="title">Title</label>
+						<input  class="form-control" id="title"  value="{{sharedNote.title}}" readonly/>
+					  </div>
+					  <div class="form-group" id="form-expiry">
+						<label for="content">Content</label>
+						<input  class="form-control" id="content"  value="{{ secured_content}}" readonly />
+					  </div>
+					  <div class="form-group" id="form-expiry">
+						<label for="time">Expiry Time</label>
+						<input  class="form-control" id=time""   value="{{ sharedNote.expiry_time }}" readonly/>
+					  </div>
+				</div>
+				{% endifequal %}
+			</div>
+		</div>
+		<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+		<script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+		<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'js/main.js' %}"></script>
+		<script src="{% static 'js/jsFunction.js' %}"></script>
+</body>
+</html>

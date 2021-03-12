@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+    <link rel="stylesheet" type="text/css"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+      crossorigin="anonymous">
+  </head>
+  <body>
+    <header>
+      <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-nav">
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+          data-target="#left-side" aria-controls="left-side"
+          aria-expanded="false" aria-label="Toggle navigations">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a href="#" class="navbar-brand mx-3 h4">LOGO</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+          data-target="#navigations" aria-controls="navigations"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navigations">
+          <ul class="navbar-nav ml-md-auto">
+            <li class="nav-item mx-lg-4">
+              <a href="{% url 'user_logout' %}" class="h4">
+                Logout
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div class="container-fluid mt-5">
+      <div class="row">
+        <div class="col-lg-2 pl-0">
+          <aside class="collapse left-side d-lg-block" id="left-side">
+            <div class="container-fluid mt-5">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a href="{% url 'user_dashboard' %}" class="h4">
+                    <img src="{% static 'images/icons/home.svg' %}"
+                      width="20" height="20" />
+                    <span class="mt-2 4">My-Vault</span>
+                  </a>
+                </li>
+                <div class="dropdown-divider my-4"></div>
+                <li class="nav-item">
+                  <a href="javascript:void(0);" class="h5">
+                    <img src="{% static 'images/icons/plus-circle.svg' %}"
+                      width="20" height="20" />
+                    <span class="mt-2">Share</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+        <div class="col-lg-10 mt-5">
+          <div class="container-fluid">
+            <h1 class="text-center mb-5">Share Note</h1>
+            {% if messages %}
+				        <div style="margin:0 10px; margin-top: 15px;">
+				        {% include 'messages.html' %}
+				        </div>
+			      {% endif %}
+            <div class="container">
+              <form action="{% url 'note_share_to' shareNote.id %}" method="POST">
+                {% csrf_token %}
+              <div class="form-group">
+                <label for="noteTitle">Note Title</label>
+                <input type="text" class="form-control" id="noteTitle" name="title" placeholder="Enter Note Title" value="{{ shareNote.title }}" readonly/>
+              </div>
+              <div class="form-group">
+                <label for="noteContent">Note Content</label>
+                <textarea class="form-control" id="noteContent" name="secured_content" rows="3" placeholder="Enter Note Content" readonly>{{shareNote.secured_content}}</textarea>
+              </div>
+              <div class="form-group d-flex">
+                <label for="SetPassword">Password:</label>&nbsp;
+                <span style="font-size: 18px;">{{shareNote.isset_Password}}</span>
+              </div>
+              <div class="form-group" id="form-expiry">
+                <label for="noteExpiry">Expiry Time</label>
+                <input type="datetime-local" class="form-control" id="noteExpiry"  name="expiryTime" value="" required />
+              </div>
+              <div class="form-group" id="form-expiry">
+                <label for="emailto">Share To</label>
+                <input type="email" class="form-control" id="emailto"  name="emailto" value="" required/>
+              </div>
+              <button type="submit" class="btn btn-primary mb-2">
+                Share
+              </button>
+            </form>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script>
+      let setpassword = document.getElementById('SetPassword');
+      let passfield  = document.getElementById('form-password');
+      if(setpassword.value == 'True'){
+        passfield.style.display = "block";
+      }else{
+        passfield.style.display = "none";
+      }
+      setpassword.addEventListener("mouseout",()=>{
+        console.log(setpassword.value);
+        if(setpassword.value == 'True'){
+          passfield.style.display = "block";
+        }else{
+          passfield.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>

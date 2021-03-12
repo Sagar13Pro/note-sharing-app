@@ -1,0 +1,191 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>User Register</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+		<link rel="icon" type="/image/png" href="{% static 'images/icons/favicon.ico' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static '/css/main.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+		<link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+			crossorigin="anonymous">
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+</head>
+
+<body>
+
+	<div class="limiter" style="background-color: #ebeeef">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-form-title" style="background-image: url('{% static "images/bg-01.jpg" %}')">
+					<span class="login100-form-title-1">
+						Registration
+					</span>
+				</div>
+				<!--For display Error or Success messages-->
+				<div style="margin:0 10px;margin-top: 15px;">
+					{% include 'messages.html' %}
+				</div>
+				<form class="login100-form" action="{% url 'user_save' %}" method="POST">
+					{% csrf_token %}
+					<div class="wrap-input100 validate-input m-b-26" data-validate="First Name is required">
+						<span class="label-input100">First Name<span style="color: #ff5e13;">&nbsp;*</span></span>
+						<input class="input100" type="text" name="firstName" value="{{form.data.firstName}}" placeholder="Enter First Name" required>
+						<span class="focus-input100"></span>
+						{% if form.errors.firstName %}
+							<div class="alert alert-danger alert-dismissible fade show">
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<strong>{{form.errors.firstName}}</strong>
+							</div>
+						{% endif %}
+					</div>
+					
+					<div class="wrap-input100 validate-input m-b-18" data-validate="Last Name is required">
+						<span class="label-input100">Last Name<span style="color: #ff5e13;">&nbsp;*</span></span>
+						<input class="input100" type="text" name="lastName" value="{{ form.data.lastName}}" placeholder="Enter Last Name" required>
+						<span class="focus-input100"></span>
+						{% if form.errors.lastName %}
+						<div class="alert alert-danger alert-dismissible fade show">
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+							<strong>{{form.errors.lastName}}</strong>
+						</div>
+						{% endif %}
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Email is required">
+						<span class="label-input100">Email Id<span style="color: #ff5e13;">&nbsp;*</span></span>
+						<input class="input100" type="email" name="email" value="{{ form.data.email }}" placeholder="Enter Email" required>
+						<span class="focus-input100"></span>
+						{% if form.errors.email %}
+						<div class="alert alert-danger alert-dismissible fade show">
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+							<strong>{{form.errors.email}}</strong>
+						</div>
+						{% endif %}
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+						<span class="label-input100">Mobile No.<span style="color: #ff5e13;">&nbsp;*</span></span>
+						<input class="input100" type="text" name="mobileNo" value="{{ form.data.mobileNo }}" placeholder="Enter Mobile No." required>
+						<span class="focus-input100"></span>
+						{% if form.errors.mobileNo %}
+						<div class="alert alert-danger alert-dismissible fade show">
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+							<strong>{{form.errors.mobileNo}}</strong>
+						</div>
+						{% endif %}
+					</div>
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Password is required">
+						<span class="label-input100">Password<span style="color: #ff5e13;">&nbsp;*</span></span>
+						<input id="passwd" class="input100" type="password" name="password" placeholder="Enter Password" required>
+						<span class="eye-icon"><i id="eye-password" class="fas fa-eye-slash"></i></span>
+						<span class="focus-input100"></span>
+						{% if form.errors %}
+							{% for item in form.errors %}
+								{% ifequal item 'upper'%} 
+								<div class="alert alert-danger alert-dismissible fade show">
+									<button type="button" class="close" data-dismiss="alert">&times;</button>
+									<strong>{{form.errors.upper}}</strong>
+								</div>
+								{% endifequal %}
+								{% ifequal item 'special'%} 
+								<div class="alert alert-danger alert-dismissible fade show">
+									<button type="button" class="close" data-dismiss="alert">&times;</button>
+									<strong>{{form.errors.special}}</strong>
+								</div>
+								{% endifequal %}
+								{% ifequal item 'lower'%} 
+								<div class="alert alert-danger alert-dismissible fade show">
+									<button type="button" class="close" data-dismiss="alert">&times;</button>
+									<strong>{{form.errors.lower}}</strong>
+								</div>
+								{% endifequal %}
+								{% ifequal item 'digit'%} 
+								<div class="alert alert-danger alert-dismissible fade show">
+									<button type="button" class="close" data-dismiss="alert">&times;</button>
+									<strong>{{form.errors.digit}}</strong>
+								</div>
+								{% endifequal %}
+								{% ifequal item 'password'%} 
+								<div class="alert alert-danger alert-dismissible fade show">
+									<button type="button" class="close" data-dismiss="alert">&times;</button>
+									<strong>{{form.errors.password}}</strong>
+								</div>
+								{% endifequal %}
+																	
+							{% endfor %}
+						{% endif %}
+						<ul id="ListPopOn" class="list-group list-group-flush" style="display: none;">
+							<li class="list-group-item">
+								<span class="lower-case invalid">
+									<i class="fas fa-times-circle " aria-hidden="true"></i>&nbsp;LowerCase
+								</span>
+							</li>
+							<li class="list-group-item">
+								<span class="upper-case invalid">
+									<i class="fas fa-times-circle" aria-hidden="true"></i>&nbsp;UpperCase
+								</span>
+							</li>
+							<li class="list-group-item">
+								<span class="number-digits invalid">
+									<i class="fas fa-times-circle" aria-hidden="true"></i>&nbsp;Number (0-9)
+								</span>
+							</li>
+							<li class="list-group-item">
+								<span class="special-characters invalid">
+									<i class="fas fa-times-circle" aria-hidden="true"></i>&nbsp;Special Characters
+								</span>
+							</li>
+							<li class="list-group-item">
+								<span class="AtLeast-Eight invalid">
+									<i class="fas fa-times-circle" aria-hidden="true"></i>&nbsp;At Least 8 Char
+								</span>
+							</li>
+						</ul>
+					</div>
+					<div class="wrap-input100 validate-input m-b-18" data-validate="Confirm Password is required">
+						<span class="label-input100">Confirm Password<span style="color: #ff5e13;">&nbsp;*</span></span>
+						<input id="Cpasswd" class="input100" type="password" name="passwordConfirm" placeholder="Enter Confirm password" required>
+						<span class="eye-icon"><i id="eye-cpass" class="fas fa-eye-slash"></i></span>
+						<span class="focus-input100"></span>
+						{% if form.errors.passwordConfirm %}
+						<div class="alert alert-danger alert-dismissible fade show">
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+							<strong>{{form.errors.passwordConfirm}}</strong>
+						</div>
+						{% endif %}
+					</div>
+					<div class="container-login100-form-btn">
+						<button type="submit" class="login100-form-btn btn-margin" id="btn-id">
+							REGISTRATION
+						</button>
+					</div>
+					<div class="w-full p-t-20" style="border-bottom: 1px solid #dadde1;"></div>
+					<div class="flex-sb-m w-full text-margins m-l-30">
+						<div>
+							Already have an account?
+							<a href="{% url 'login' %}" class="text-primary font-weight-bold">
+								Sign In
+							</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/main.js' %}"></script>
+	<script src="{% static 'js/jsFunction.js' %}"></script>
+</body>
+
+</html>
