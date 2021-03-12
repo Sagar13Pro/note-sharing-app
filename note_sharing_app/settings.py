@@ -25,7 +25,7 @@ SECRET_KEY = '6_c(t0p-%g)*fi8@nz$5)o*@d2oo!evv-lm#mf545kot0x*f6%'
 KEY = b'E-kPXiMlc7WfqKr6hrqv_B0debCecvmuEEJLAtobaLU='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['myvault-app.herokuapp.com','127.0.0.1']
 
