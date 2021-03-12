@@ -134,7 +134,7 @@ def ValidateUser(request):
             request.session['session_email'] = Users.objects.get(
                 email=request.POST["email"]).email
             print(request.session.get('session_email'))
-            return HttpResponseRedirect(reverse('user_dashboard'),'',{'var':'okokoko'})
+            return HttpResponseRedirect(reverse('user_dashboard'))
         else:
             messages.error(
                 request, 'OPPS! Your credentails doesn\'t matched with our records.'
