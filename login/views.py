@@ -28,7 +28,7 @@ def Dashboard(request):
         note = list(Note.objects.filter(creator_id = Users.objects.get(email = request.session.get('session_email'))).values())
         for item in note:
             item['password'] = Note.set_PasswordDecrypt(item['password'])
-        return render(request, "Dashboard.html",
+        return render(request, "dashboard.html",
                       {
                           "users": Users.objects.get(email=request.session.get('session_email')),
                           "notes": note
