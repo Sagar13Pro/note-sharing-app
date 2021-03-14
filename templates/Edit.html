@@ -20,7 +20,7 @@
           aria-expanded="false" aria-label="Toggle navigations">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a href="#" class="navbar-brand mx-3 h4">LOGO</a>
+        <a href="#" class="navbar-brand mx-3 h4"><img src="{% static 'images/logo-white.png'%}" alt="" width="100" height="30" /></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
           data-target="#navigations" aria-controls="navigations"
           aria-expanded="false" aria-label="Toggle navigation">
@@ -58,6 +58,14 @@
                     <span class="mt-2">Edit</span>
                   </a>
                 </li>
+                <div class="dropdown-divider my-4"></div>
+                <li class="nav-item">
+                  <a href="{% url 'note_share' editNote.id %}" class="h5">
+                    <img src="{% static 'images/icons/plus-circle.svg' %}"
+                      width="20" height="20" />
+                    <span class="mt-2">Share</span>
+                  </a>
+                </li>
               </ul>
             </div>
           </aside>
@@ -65,23 +73,23 @@
         <div class="col-lg-10 mt-5">
           <div class="container-fluid">
             <h1 class="text-center mb-5">Edit Note</h1>
-            <div class="container">
+            <div class="container border rounded bg-white">
               {% if messages %}
                   {% include 'messages.html' %}
                 {% endif %}
               <form action="{% url 'note_edit_store' editNote.id %}" method="POST">
                 {% csrf_token %}
               <div class="form-group">
-                <label for="noteTitle">Note Title</label>
+                <label for="noteTitle" class="my-2">Note Title</label>
                 <input type="text" class="form-control" id="noteTitle" name="title" placeholder="Enter Note Title" value="{{ editNote.title }}" />
               </div>
               <div class="form-group">
-                <label for="noteContent">Note Content</label>
-                <textarea class="form-control" id="noteContent" name="secured_content" rows="3" placeholder="Enter Note Content">{{secured_content}}</textarea>
+                <label for="noteContent" class="my-2">Note Content</label>
+                <textarea class="form-control" id="noteContent" name="secured_content" rows="6" placeholder="Enter Note Content">{{secured_content}}</textarea>
               </div>
-              <div class="form-group">
-                <label for="SetPassword">Set Password</label>
-                <select name="isset_Password" id="SetPassword" class="custom-select">
+              <div class="form-group d-flex mx-2">
+                <label for="SetPassword" class="my-1">Set Password:</label>
+                <select name="isset_Password" id="SetPassword" class="custom-select ml-1">
                   <option value="" selected>selected</option>
                   <option value="False"
                   {% ifequal editNote.isset_Password False %}

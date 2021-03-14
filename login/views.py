@@ -198,10 +198,11 @@ def ShareNote(request,id = None):
             note.expiry_time = request.POST['expiryTime']
             note.save()
             noteLink = 'http://127.0.0.1:8000/user/note/shared/view/' + str(id)
-            print(noteLink)
+            livelink = 'https://myvault-app.herokuapp.com/user/note/shared/view/' + str(id)
+            print(noteLink,livelink)
             send_mail(
                 'Note Share Link',
-                'The link for shared note:' + noteLink,
+                'The link for shared note:' + noteLink +' '+'Live Note Shared link: ' + livelink,
                 settings.EMAIL_HOST_USER,
                 [request.POST['emailto']]
                 )
