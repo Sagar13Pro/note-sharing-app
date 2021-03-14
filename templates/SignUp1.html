@@ -52,8 +52,7 @@
 						<input class="input100" type="text" name="lastName" value="{{ form.data.lastName}}" placeholder="Enter Last Name" required>
 						<span class="focus-input100"></span>
 						{% if form.errors.lastName %}
-						<div class="alert alert-danger alert-dismissible fade show">
-							<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<div class="alert alert-danger">
 							<strong>{{form.errors.lastName}}</strong>
 						</div>
 						{% endif %}
@@ -64,8 +63,7 @@
 						<input class="input100" type="email" name="email" value="{{ form.data.email }}" placeholder="Enter Email" required>
 						<span class="focus-input100"></span>
 						{% if form.errors.email %}
-						<div class="alert alert-danger alert-dismissible fade show">
-							<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<div class="alert alert-danger">
 							<strong>{{form.errors.email}}</strong>
 						</div>
 						{% endif %}
@@ -76,8 +74,7 @@
 						<input class="input100" type="text" name="mobileNo" value="{{ form.data.mobileNo }}" placeholder="Enter Mobile No." required>
 						<span class="focus-input100"></span>
 						{% if form.errors.mobileNo %}
-						<div class="alert alert-danger alert-dismissible fade show">
-							<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<div class="alert alert-danger">
 							<strong>{{form.errors.mobileNo}}</strong>
 						</div>
 						{% endif %}
@@ -90,32 +87,27 @@
 						{% if form.errors %}
 							{% for item in form.errors %}
 								{% ifequal item 'upper'%} 
-								<div class="alert alert-danger alert-dismissible fade show">
-									<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<div class="alert alert-danger">
 									<strong>{{form.errors.upper}}</strong>
 								</div>
 								{% endifequal %}
 								{% ifequal item 'special'%} 
-								<div class="alert alert-danger alert-dismissible fade show">
-									<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<div class="alert alert-danger">
 									<strong>{{form.errors.special}}</strong>
 								</div>
 								{% endifequal %}
 								{% ifequal item 'lower'%} 
-								<div class="alert alert-danger alert-dismissible fade show">
-									<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<div class="alert alert-danger">
 									<strong>{{form.errors.lower}}</strong>
 								</div>
 								{% endifequal %}
 								{% ifequal item 'digit'%} 
-								<div class="alert alert-danger alert-dismissible fade show">
-									<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<div class="alert alert-danger">
 									<strong>{{form.errors.digit}}</strong>
 								</div>
 								{% endifequal %}
 								{% ifequal item 'password'%} 
-								<div class="alert alert-danger alert-dismissible fade show">
-									<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<div class="alert alert-danger">
 									<strong>{{form.errors.password}}</strong>
 								</div>
 								{% endifequal %}
@@ -156,8 +148,7 @@
 						<span class="eye-icon"><i id="eye-cpass" class="fas fa-eye-slash"></i></span>
 						<span class="focus-input100"></span>
 						{% if form.errors.passwordConfirm %}
-						<div class="alert alert-danger alert-dismissible fade show">
-							<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<div class="alert alert-danger">
 							<strong>{{form.errors.passwordConfirm}}</strong>
 						</div>
 						{% endif %}
@@ -186,6 +177,13 @@
 	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
 	<script src="{% static 'js/main.js' %}"></script>
 	<script src="{% static 'js/jsFunction.js' %}"></script>
+	<script>
+		setTimeout(()=>{
+			if ($('.alert').length > 0){
+				$('.alert').remove();
+			}
+		},10000)
+	</script>
 </body>
 
 </html>

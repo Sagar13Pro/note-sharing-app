@@ -89,7 +89,7 @@
               </div>
               <div class="col-12 bg-white my-2 border border-2 border-primary rounded">
                 {% if messages %}
-				          <div style="margin:0 10px; margin-top: 15px;" id="Messages">
+				          <div style="margin:0 10px; margin-top: 15px;">
 				            {% include 'messages.html' %}
 				          </div>
 			          {% endif %}
@@ -169,11 +169,6 @@
       let state = (hours <= 11 && hours >= 5) ? "Good Morning" : (hours <17 && hours >= 12) ? "Good Afternoon": "Good Evening";
         document.getElementById('greetings').innerHTML = state+ ',';
     }
-    setTimeout(()=>{
-      if ($('#Messages').length > 0) {
-        $('#Messages').remove();
-      }
-    },4000);
   </script>
   </body>
 </html>

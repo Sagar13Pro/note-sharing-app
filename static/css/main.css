@@ -625,3 +625,6 @@ input.input100 {
     left: 97%;
     cursor: pointer;
 }
+input[type=datetime-local]{
+  max-width: 16rem;
+}

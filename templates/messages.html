@@ -1,7 +1,15 @@
 {% if messages %}
 {% for message in messages %}
-<div class="alert {{ message.tags }}">
+<div class="alert {{ message.tags }} my-2" id="Error">
     <strong>{{ message }}</strong>
 </div>
 {% endfor %}
 {% endif%}
+
+<script>
+   setTimeout(()=>{
+       if ($('#Error').length > 0){
+           $('#Error').remove();
+       }
+   },6000)
+</script>

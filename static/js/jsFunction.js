@@ -121,3 +121,23 @@ password.onfocusout = function () {
 } catch (error) {
     console.log(error);
 }
+
+try{
+    let setpassword = document.getElementById('SetPassword');
+      let passfield  = document.getElementById('form-password');
+      if(setpassword.value == 'True'){
+        passfield.style.display = "block";
+      }else{
+        passfield.style.display = "none";
+      }
+      setpassword.addEventListener("mouseout",()=>{
+        console.log(setpassword.value);
+        if(setpassword.value == 'True'){
+          passfield.style.display = "block";
+        }else{
+          passfield.style.display = "none";
+        }
+      });
+}catch(error){
+    console.log(error)
+}

@@ -105,41 +105,38 @@
                 <div class="form-group" id="form-password" style="display: none;">
                   <label for="notePassword">Password</label>
                   <input type="password" class="form-control" id="notePassword" placeholder="Password" name="password"/>
+                   <div id="errorDiv">
                     {% if noteform.errors %}
                     {% for item in noteform.errors %}
                     {% ifequal item 'upper'%} 
-                    <div class="alert alert-danger alert-dismissible fade show">
-                      <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <div class="alert alert-danger">
                       <strong>{{noteform.errors.upper}}</strong>
                     </div>
                     {% endifequal %}
                     {% ifequal item 'special'%} 
-                    <div class="alert alert-danger alert-dismissible fade show">
-                      <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <div class="alert alert-danger">
                       <strong>{{noteform.errors.special}}</strong>
                     </div>
                     {% endifequal %}
                     {% ifequal item 'lower'%} 
-                    <div class="alert alert-danger alert-dismissible fade show">
-                      <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <div class="alert alert-danger">
                       <strong>{{noteform.errors.lower}}</strong>
                     </div>
                     {% endifequal %}
                     {% ifequal item 'digit'%} 
-                    <div class="alert alert-danger alert-dismissible fade show">
-                      <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <div class="alert alert-danger">
                       <strong>{{noteform.errors.digit}}</strong>
                     </div>
                     {% endifequal %}
                     {% ifequal item 'password'%} 
-                    <div class="alert alert-danger alert-dismissible fade show">
-                      <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <div class="alert alert-danger">
                       <strong>{{noteform.errors.password}}</strong>
                     </div>
                     {% endifequal %}
                                       
                   {% endfor %}
 						        {% endif %}
+                   </div>
                 </div>
                 <button type="submit" class="btn btn-primary mb-2">
                   Create Note
@@ -175,10 +172,10 @@
         }
       });
       setTimeout(()=>{
-        if ($("#Messages").length > 0) {
-          $('#Messages').remove();
+        if ($("#errorDiv").length > 0) {
+          $('#errorDiv').remove();
         }
-      },4000);
+      },10000);
     </script>
   </body>
 </html>

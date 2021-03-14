@@ -85,8 +85,8 @@
                 <label for="noteTitle" class="my-2">Note Title</label>
                 <input type="text" class="form-control" id="noteTitle" name="title" placeholder="Enter Note Title" value="{{ shareNote.title }}" readonly/>
               </div>
-              <div class="form-group" class="my-2">
-                <label for="noteContent">Note Content</label>
+              <div class="form-group">
+                <label for="noteContent" class="my-2">Note Content</label>
                 <textarea class="form-control" id="noteContent" name="secured_content" rows="3" placeholder="Enter Note Content" readonly>{{shareNote.secured_content}}</textarea>
               </div>
               <div class="form-group d-flex">
@@ -94,14 +94,14 @@
                 <span style="font-size: 18px;">{{shareNote.isset_Password}}</span>
               </div>
               <div class="form-group" id="form-expiry">
-                <label for="noteExpiry">Expiry Time</label>
-                <input type="datetime-local" class="form-control" id="noteExpiry"  name="expiryTime" value="" required />
+                <label for="noteExpiry" class="d-inline">Set Expiry Time:</label>
+                <input type="datetime-local" class="form-control d-inline-block ml-1" id="noteExpiry"  name="expiryTime" required />
               </div>
               <div class="form-group" id="form-expiry">
                 <label for="emailto">Share To</label>
                 <input type="email" class="form-control" id="emailto"  name="emailto" value="" required/>
               </div>
-              <button type="submit" class="btn btn-primary mb-2">
+              <button type="submit" class="btn btn-primary mb-2 px-4">
                 Share
               </button>
             </form>
@@ -116,22 +116,5 @@
     <script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
-    <script>
-      let setpassword = document.getElementById('SetPassword');
-      let passfield  = document.getElementById('form-password');
-      if(setpassword.value == 'True'){
-        passfield.style.display = "block";
-      }else{
-        passfield.style.display = "none";
-      }
-      setpassword.addEventListener("mouseout",()=>{
-        console.log(setpassword.value);
-        if(setpassword.value == 'True'){
-          passfield.style.display = "block";
-        }else{
-          passfield.style.display = "none";
-        }
-      });
-    </script>
   </body>
 </html>

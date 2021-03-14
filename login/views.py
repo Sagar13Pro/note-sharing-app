@@ -47,7 +47,7 @@ def Edit(request,id = None):
 def Share(request,id = None):
     if request.session.get('session_email'):
         shareNote = Note.objects.get(id=id)
-        return render(request,"share.html",{'shareNote':shareNote})
+        return render(request,"share.html",{'shareNote':shareNote,'date':datetime.now()})
     return HttpResponseRedirect(reverse('login'))
 
 def SharedView(request, id = None):
@@ -155,7 +155,7 @@ def create_note(request):
                     password = Note.set_PasswordEncrypt(note_valid.data['password']),
                     isset_Password = note_valid.data['isset_Password'],
                     creator = user)
-                    messages.success(request,"Note successfully created!")
+                    messages.success(request,"Note successfully created with title: %s" % note_valid.data['title'])
                 else:
                     print(note_valid.errors)
                     return render(request, 'create_note.html', {'noteform':note_valid})
@@ -182,7 +182,7 @@ def EditStore(request, id = None):
                     to_update.password = Note.set_PasswordEncrypt(contents.data['password'])
                     to_update.isset_Password = contents.data['isset_Password']
             to_update.save()
-            messages.success(request,'Hurray!! Your Note has been updated successfully.!!')
+            messages.success(request,'Hurray!! Your Note with id %d has been successfully updated.!!' % id)
             #args=(par1,) like this only it works
             return HttpResponseRedirect(reverse('note_edit',args=(id,)))
         else:
@@ -206,7 +206,7 @@ def ShareNote(request,id = None):
                 settings.EMAIL_HOST_USER,
                 [request.POST['emailto']]
                 )
-            messages.success(request, 'Your note has been shared successfully')
+            messages.success(request, 'Your note has been shared to %s successfully. Also check in spam for mail' % request.POST['emailto'])
             return HttpResponseRedirect(reverse('user_dashboard'))
         except Exception as error:
             print(error)
