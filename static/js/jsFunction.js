@@ -124,12 +124,15 @@ password.onfocusout = function () {
 try{
     let setpassword = document.getElementById('SetPassword');
       let passfield  = document.getElementById('form-password');
-      if(setpassword.value == 'True'){
-        passfield.style.display = "block";
-      }else{
-        passfield.style.display = "none";
-      }
-      setpassword.addEventListener("mouseout",()=>{
+    //   if(setpassword.value == 'True'){
+    //     passfield.style.display = "block";
+    //     document.getElementById("passwd").setAttribute("required","true");
+    //   }else{
+    //     document.getElementById("passwd").value = '';
+    //     passfield.style.display = "none";
+    //     document.getElementById("passwd").removeAttribute("required");
+    //   }
+      setpassword.addEventListener("change",()=>{
         console.log(setpassword.value);
         if(setpassword.value == 'True'){
           passfield.style.display = "block";
@@ -137,6 +140,7 @@ try{
         }else{
           passfield.style.display = "none";
           document.getElementById("passwd").removeAttribute("required");
+          document.getElementById("passwd").value = '';
         }
       });
 }catch(error){
