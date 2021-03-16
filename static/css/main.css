@@ -515,8 +515,8 @@ input.input100 {
 
 @media (min-width: 325px) and (max-width: 424px){
   .eye-icon{
-    position: relative;
-    top: -1.8rem;
+    position: absolute;
+    top: 2.4rem;
     right: 1rem;
     float: right;
     font-weight: 700;
