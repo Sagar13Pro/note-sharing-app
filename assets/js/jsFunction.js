@@ -18,7 +18,6 @@ eyeiconPasswd.onclick = function(){
 }
 
 try {
-   
 eyeiconCpasswd.onclick = function(){
     if(cpassword.value.length){
         if(cpassword.type == "password"){
@@ -120,4 +119,30 @@ password.onfocusout = function () {
 
 } catch (error) {
     console.log(error);
+}
+
+try{
+    let setpassword = document.getElementById('SetPassword');
+      let passfield  = document.getElementById('form-password');
+    //   if(setpassword.value == 'True'){
+    //     passfield.style.display = "block";
+    //     document.getElementById("passwd").setAttribute("required","true");
+    //   }else{
+    //     document.getElementById("passwd").value = '';
+    //     passfield.style.display = "none";
+    //     document.getElementById("passwd").removeAttribute("required");
+    //   }
+      setpassword.addEventListener("change",()=>{
+        console.log(setpassword.value);
+        if(setpassword.value == 'True'){
+          passfield.style.display = "block";
+          document.getElementById("passwd").setAttribute("required","true");
+        }else{
+          passfield.style.display = "none";
+          document.getElementById("passwd").removeAttribute("required");
+          document.getElementById("passwd").value = '';
+        }
+      });
+}catch(error){
+    console.log(error)
 }
