@@ -18,7 +18,6 @@ eyeiconPasswd.onclick = function(){
 }
 
 try {
-   
 eyeiconCpasswd.onclick = function(){
     if(cpassword.value.length){
         if(cpassword.type == "password"){
@@ -134,8 +133,10 @@ try{
         console.log(setpassword.value);
         if(setpassword.value == 'True'){
           passfield.style.display = "block";
+          document.getElementById("passwd").setAttribute("required","true");
         }else{
           passfield.style.display = "none";
+          document.getElementById("passwd").removeAttribute("required");
         }
       });
 }catch(error){

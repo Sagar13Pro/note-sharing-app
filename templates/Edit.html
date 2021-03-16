@@ -109,7 +109,6 @@
                 {%else%}
                   value="{{passwd}}"
                 {% endif %}
-                  
                 />
                 <span class="eye-edit"><i id="eye-password" class="fas fa-eye-slash"></i></span>
               </div>
@@ -130,21 +129,7 @@
     <script src="{% static 'js/main.js' %}"></script>
     <script src="{% static 'js/jsFunction.js' %}"></script>
     <script>
-      let setpassword = document.getElementById('SetPassword');
-      let passfield  = document.getElementById('form-password');
-      if(setpassword.value == 'True'){
-        passfield.style.display = "block";
-      }else{
-        passfield.style.display = "none";
-      }
-      setpassword.addEventListener("mouseout",()=>{
-        console.log(setpassword.value);
-        if(setpassword.value == 'True'){
-          passfield.style.display = "block";
-        }else{
-          passfield.style.display = "none";
-        }
-      });
+      
     </script>
   </body>
 </html>
