@@ -197,12 +197,12 @@ def ShareNote(request,id = None):
             note = Note.objects.get(id=id)
             note.expiry_time = request.POST['expiryTime']
             note.save()
-            noteLink = 'http://127.0.0.1:8000/user/note/shared/view/' + str(id)
+            # noteLink = 'http://127.0.0.1:8000/user/note/shared/view/' + str(id)
             livelink = 'https://myvault-app.herokuapp.com/user/note/shared/view/' + str(id)
-            print(noteLink,livelink)
+            print('Shared Note link:',livelink)
             send_mail(
                 'Note Share Link',
-                'The link for shared note:' + noteLink +' '+'Live Note Shared link: ' + livelink,
+                'Live Note Shared link: ' + livelink,
                 settings.EMAIL_HOST_USER,
                 [request.POST['emailto']]
                 )
@@ -278,7 +278,7 @@ def reset_done(request):
 def validate_password(request):
     try:
         exist_user = Users.objects.get(email=request.POST['email'])
-        password_Reset_link = "http://127.0.0.1:8000/user/reset_password/" + str(exist_user.id)
+        password_Reset_link = "https://myvault-app.herokuapp.com/user/reset_password/" + str(exist_user.id)
         subject = 'Password Reset Link'
         message = 'Click on below link to reset password ' + password_Reset_link
         email_from = settings.EMAIL_HOST_USER 

@@ -105,6 +105,7 @@
                 <div class="form-group" id="form-password" style="display: none;">
                   <label for="notePassword">Password</label>
                   <input type="password" class="form-control" id="notePassword" placeholder="Password" name="password"/>
+                  <span class="eye-edit"><i id="eye-password" class="fas fa-eye-slash"></i></span>
                    <div id="errorDiv">
                     {% if noteform.errors %}
                     {% for item in noteform.errors %}
@@ -153,6 +154,7 @@
     <script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/jsFunction.js' %}"></script>
     <script>
       let setpassword = document.getElementById('SetPassword');
       let passfield  = document.getElementById('form-password');
