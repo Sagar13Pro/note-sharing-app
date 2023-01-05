@@ -27,7 +27,7 @@ KEY = b'E-kPXiMlc7WfqKr6hrqv_B0debCecvmuEEJLAtobaLU='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['myvault-app.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['myvault-app.herokuapp.com','localhost']
 
 
 # Application definition
