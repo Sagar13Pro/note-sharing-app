@@ -27,7 +27,7 @@ KEY = b'E-kPXiMlc7WfqKr6hrqv_B0debCecvmuEEJLAtobaLU='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['myvault-app.herokuapp.com','localhost']
+ALLOWED_HOSTS = ['myvault-app.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -110,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Asia/Kolkata'
+TIME_ZONE = 'US/Eastern'
 
 USE_I18N = True
 
